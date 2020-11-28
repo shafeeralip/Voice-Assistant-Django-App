@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+ 
+    
+ <div class="container">
+<button id="play" class=" mt-5 btn btn-primary">Play audio</button>
+<div class="pt-5">
+    {% load gTTS %}
+    <audio id="a"
+         src="{% say 'en-us' word %}"  type="audio/mpeg">
+        </audio>
+    </div>
+     <form action="{% url 'home' %}" method="POST">
+         {% csrf_token %}
+        <div class="form-group">
+            <label for="exampleInputPassword1">Enter the Number</label>
+            <input type="tel"  pattern="[1-9]{1}\d*" maxlength="" name="number" class="form-control"  required >
+          </div>
+          <div class="form-group">
+            <input type="submit" value="submit">
+          </div>
+     </form>
+     <div>
+         <h3>Result: <span style="color:red;">{{word}}</span> </h3>
+     </div>
+         
+       
+   
+    </div>
+    <script>
+        var play=document.getElementById("play")
+        play.addEventListener("click",function(){
+            var a = document.getElementById("a")
+            a.play()
+
+        })
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>
